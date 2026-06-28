@@ -19,7 +19,7 @@ class BookDetailPage(BasePage):
 
     def get_price(self) -> str:
         self.wait_for_selector(self._PRICE)
-        return self.get_text(self._PRICE)
+        return self._page.locator(self._PRICE).first.inner_text().strip()
 
     def is_product_info_visible(self) -> bool:
         return self.is_visible(self._PRODUCT_INFO)
