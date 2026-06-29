@@ -22,3 +22,12 @@ test-results/
 .vscode/
 .idea/
 *.swp
+
+# Java JDK
+jdk-17.0.11+9/
+*.tar.gz
+*.tgz
+
+# Allure binary
+allure-2.27.0/
+allure.sh

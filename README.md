@@ -209,43 +209,78 @@ xdg-open reports/report.html
 
 ### Allure Report
 
-#### Install Allure CLI on Ubuntu or Debian
+This project includes a built-in setup script so no system-level install is needed.
+Follow these steps once after cloning the project.
+
+#### Step 1 - Download Java 17
 
 ```bash
-sudo apt-get install -y allure
+wget https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.11%2B9/OpenJDK17U-jdk_x64_linux_hotspot_17.0.11_9.tar.gz
 ```
 
-#### Install Allure CLI on macOS
+#### Step 2 - Extract Java
 
 ```bash
-brew install allure
+tar -xzf OpenJDK17U-jdk_x64_linux_hotspot_17.0.11_9.tar.gz
 ```
 
-#### Run tests and generate Allure results
+#### Step 3 - Download Allure
 
 ```bash
-pytest --alluredir=allure-results
+wget https://github.com/allure-framework/allure2/releases/download/2.27.0/allure-2.27.0.tgz
 ```
 
-#### Serve the interactive Allure report
+#### Step 4 - Extract Allure
 
 ```bash
-allure serve allure-results
+tar -xzf allure-2.27.0.tgz
 ```
 
-This opens the report in your default browser automatically.
-
-#### Generate a static Allure report
+#### Step 5 - Create the allure.sh script
 
 ```bash
-allure generate allure-results --clean -o allure-report
-python3 -m http.server 8080 --directory allure-report
+nano allure.sh
 ```
 
-Then open http://localhost:8080 in your browser.
+Paste this content:
 
----
+```bash
+#!/bin/bash
+export JAVA_HOME="$HOME/Desktop/books-automation-sajib/jdk-17.0.11+9"
+export PATH="$JAVA_HOME/bin:$PATH"
+$HOME/Desktop/books-automation-sajib/allure-2.27.0/bin/allure "$@"
+```
 
+Save with Ctrl+X then Y then Enter.
+
+#### Step 6 - Make the script executable
+
+```bash
+chmod +x allure.sh
+```
+
+#### Step 7 - Verify Allure is working
+
+```bash
+./allure.sh --version
+```
+
+Expected output: 2.27.0
+
+#### Step 8 - Run tests to generate Allure results
+
+```bash
+pytest -v
+```
+
+#### Step 9 - Open the Allure report
+
+```bash
+./allure.sh serve allure-results
+```
+
+Browser opens automatically with the full interactive Allure report.
+```bash
 ### Viewing Allure Report from GitHub Actions (No Install Required)
 
 Step 1 - Go to your repository on GitHub
@@ -258,7 +293,7 @@ Step 6 - Open terminal inside the unzipped folder
 ```bash
 cd ~/Downloads/allure-report
 python3 -m http.server 8080
-```
+
 
 Step 7 - Open browser and go to:
 http://localhost:8080
@@ -266,7 +301,7 @@ http://localhost:8080
 Step 8 - To stop the server press Ctrl+C in terminal
 
 Note: Python is already installed with this project so no extra install needed.
-
+```
 ## GitHub Actions CI/CD
 
 The workflow file is located at .github/workflows/playwright.yml.
@@ -334,4 +369,4 @@ The workflow file is located at .github/workflows/playwright.yml.
 
 ## Author
 
-Built following industry automation best practices using OOP, SOLID, DRY, and Page Object Model.
+sajib Ahmed
