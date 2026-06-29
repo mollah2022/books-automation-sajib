@@ -98,6 +98,18 @@ You will see (venv) at the start of your terminal line when it is active.
 pip install -r requirements.txt
 ```
 
+If you are on a network with a proxy, use this command instead:
+
+```bash
+pip install -r requirements.txt --proxy http://:
+```
+
+Example for office network:
+
+```bash
+pip install -r requirements.txt --proxy http://192.168.1.235:8088
+```
+
 ### Step 5 - Install Playwright browser
 
 ```bash
