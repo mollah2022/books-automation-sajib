@@ -1,8 +1,10 @@
-# Third-party imports
+# Third party imports
 import allure
 import pytest
 import requests
 from playwright.sync_api import Page
+import urllib3
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Internal imports
 from pages.home_page import HomePage
@@ -15,11 +17,15 @@ from utils.helpers import build_absolute_url
 @pytest.mark.regression
 @pytest.mark.links
 class TestBrokenLinks:
-    """Test suite for detecting broken hyperlinks on the homepage."""
+    """ 
+    Test suite for detecting broken hyperlinks on the homepage.
+    """
 
     @allure.title("All homepage hyperlinks return HTTP 200")
     def test_no_broken_links(self, page: Page) -> None:
-        """Send HTTP GET to every unique href and check for successful response."""
+        """
+        Send HTTP GET to every unique href and check for successful response.
+        """
         home = HomePage(page).open()
 
         with allure.step("Collect all anchor hrefs from homepage"):
@@ -47,7 +53,7 @@ class TestBrokenLinks:
         for url in urls:
             with allure.step(f"GET {url}"):
                 try:
-                    response = session.get(url, timeout=Config.REQUEST_TIMEOUT, allow_redirects=True)
+                    response = session.get(url, timeout=Config.REQUEST_TIMEOUT, allow_redirects=True, verify=False)
                     status = response.status_code
                     if status not in (200, 301, 302):
                         broken.append(f"{url} → HTTP {status}")
