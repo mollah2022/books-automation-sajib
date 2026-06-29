@@ -246,6 +246,27 @@ Then open http://localhost:8080 in your browser.
 
 ---
 
+### Viewing Allure Report from GitHub Actions (No Install Required)
+
+Step 1 - Go to your repository on GitHub
+Step 2 - Click the Actions tab
+Step 3 - Click on the latest green workflow run
+Step 4 - Scroll down to the Artifacts section
+Step 5 - Download and unzip allure-report
+Step 6 - Open terminal inside the unzipped folder
+
+```bash
+cd ~/Downloads/allure-report
+python3 -m http.server 8080
+```
+
+Step 7 - Open browser and go to:
+http://localhost:8080
+
+Step 8 - To stop the server press Ctrl+C in terminal
+
+Note: Python is already installed with this project so no extra install needed.
+
 ## GitHub Actions CI/CD
 
 The workflow file is located at .github/workflows/playwright.yml.
