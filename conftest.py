@@ -52,7 +52,19 @@ def page(browser_context: BrowserContext, request):
     page: Page = browser_context.new_page()
     page.set_default_timeout(Config.DEFAULT_TIMEOUT)
 
+    # yield page
+
+    # page.close()
+
     yield page
+
+    # Take screenshot after every test
+    test_name = request.node.name.replace(" ", "_").replace("/", "_")
+    screenshot_path = os.path.join(Config.SCREENSHOT_DIR, f"{test_name}.png")
+    try:
+       page.screenshot(path=screenshot_path, full_page=True)
+    except Exception:
+        pass
 
     page.close()
 
