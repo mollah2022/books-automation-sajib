@@ -3,7 +3,9 @@ from utils.config import Config
 
 
 class BasePage:
-    """Base class for all page objects. Handles common browser interactions."""
+    """
+    Base class for all page objects. Handles common browser interactions.
+    """
 
     def __init__(self, page: Page) -> None:
         self._page = page

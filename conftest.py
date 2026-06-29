@@ -6,7 +6,9 @@ from utils.config import Config
 
 @pytest.fixture(scope="session")
 def browser_instance():
-    """Launch a single Chromium browser for the entire test session."""
+    """
+    Launch a single Chromium browser for the entire test session.
+    """
     with sync_playwright() as playwright:
         browser: Browser = playwright.chromium.launch(
             headless=Config.HEADLESS,
@@ -19,7 +21,8 @@ def browser_instance():
 @pytest.fixture(scope="function")
 def browser_context(browser_instance: Browser, request):
     """
-    Create a fresh browser context for each test with video and tracing."""
+    Create a fresh browser context for each test with video and tracing.
+    """
     os.makedirs(Config.VIDEO_DIR, exist_ok=True)
     os.makedirs(Config.TRACE_DIR, exist_ok=True)
 
@@ -41,7 +44,9 @@ def browser_context(browser_instance: Browser, request):
 
 @pytest.fixture(scope="function")
 def page(browser_context: BrowserContext, request):
-    """Open a new page and capture screenshot on test failure."""
+    """
+    Open a new page and capture screenshot on test failure.
+    """
     os.makedirs(Config.SCREENSHOT_DIR, exist_ok=True)
 
     page: Page = browser_context.new_page()

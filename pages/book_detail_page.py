@@ -3,7 +3,9 @@ from pages.base_page import BasePage
 
 
 class BookDetailPage(BasePage):
-    """Page object for individual book detail page."""
+    """
+    Page object for individual book detail page.
+    """
 
     _H1_TITLE = "article.product_page h1"
     _PRICE = "p.price_color"

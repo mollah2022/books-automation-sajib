@@ -7,14 +7,18 @@ from utils.config import Config
 
 @dataclass
 class BookCard:
-    """Represents a single book item on the homepage."""
+    """
+    Represents a single book item on the homepage.
+    """
     title: str
     price: str
     index: int
 
 
 class HomePage(BasePage):
-    """Page object for the Books to Scrape homepage."""
+    """
+    Page object for the Books to Scrape homepage.
+    """
 
     _BOOKS_SECTION = "section"
     _BOOK_ITEMS = "article.product_pod"
