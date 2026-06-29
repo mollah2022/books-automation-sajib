@@ -142,7 +142,39 @@ HEADLESS=false pytest -v
 ---
 
 ## Project Structure
----
+
+```
+books-automation-sajib/
+├── .github/
+│   └── workflows/
+│       └── playwright.yml
+├── pages/
+│   ├── __init__.py
+│   ├── base_page.py
+│   ├── home_page.py
+│   └── book_detail_page.py
+├── tests/
+│   ├── __init__.py
+│   ├── test_01_homepage.py
+│   ├── test_02_book_navigation.py
+│   ├── test_03_data_consistency.py
+│   ├── test_04_broken_links.py
+│   └── test_05_image_validation.py
+├── utils/
+│   ├── __init__.py
+│   ├── config.py
+│   └── helpers.py
+├── reports/
+├── allure-results/
+├── screenshots/
+├── videos/
+├── traces/
+├── conftest.py
+├── pytest.ini
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
 
 ## Test Case Coverage
 
